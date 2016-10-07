@@ -56,9 +56,9 @@ export let Tabs = (_dec = customElement('tabs'), _dec2 = inject(Element, EventAg
   }
 
   attached() {
-    var selected = this.tabs.find(tab => tab.selected);
-    if (!selected) return;
-    document.querySelector('#' + selected.id).classList.add('active');
+    var active = this.tabs.find(tab => tab.active);
+    if (!active) return;
+    document.querySelector('#' + active.id).classList.add('active');
   }
 
   show(event) {

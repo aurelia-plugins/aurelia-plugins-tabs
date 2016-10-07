@@ -60,11 +60,11 @@ export var Tabs = (_dec = customElement('tabs'), _dec2 = inject(Element, EventAg
   }
 
   Tabs.prototype.attached = function attached() {
-    var selected = this.tabs.find(function (tab) {
-      return tab.selected;
+    var active = this.tabs.find(function (tab) {
+      return tab.active;
     });
-    if (!selected) return;
-    document.querySelector('#' + selected.id).classList.add('active');
+    if (!active) return;
+    document.querySelector('#' + active.id).classList.add('active');
   };
 
   Tabs.prototype.show = function show(event) {

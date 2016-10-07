@@ -26,9 +26,9 @@ export class Tabs {
 
   // LIFECYCLE HANDLER
   attached() {
-    var selected = this.tabs.find(tab => tab.selected);
-    if (!selected) return;
-    document.querySelector('#' + selected.id).classList.add('active');
+    var active = this.tabs.find(tab => tab.active);
+    if (!active) return;
+    document.querySelector('#' + active.id).classList.add('active');
   }
 
   // PUBLIC METHODS
