@@ -3,7 +3,8 @@ import {
 } from 'aurelia-dependency-injection';
 import {
   bindable,
-  customElement
+  customElement,
+  containerless
 } from 'aurelia-templating';
 import {
   EventAggregator

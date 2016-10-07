@@ -1,8 +1,9 @@
 // IMPORTS
-import {bindable, customElement} from 'aurelia-templating';
+import {bindable, containerless, customElement} from 'aurelia-templating';
 
 
 // CLASS ATTRIBUTES
+@containerless()
 @customElement('tab-pane')
 
 

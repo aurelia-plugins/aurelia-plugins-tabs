@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-dependency-injection';
-import {bindable,customElement} from 'aurelia-templating';
+import {bindable,customElement,containerless} from 'aurelia-templating';
 import {EventAggregator} from 'aurelia-event-aggregator';
 
 // PUBLIC METHODS
@@ -52,6 +52,7 @@ export class Tabs {
 
 // IMPORTS
 // CLASS ATTRIBUTES
+@containerless()
 @customElement('tab-pane')
 
 

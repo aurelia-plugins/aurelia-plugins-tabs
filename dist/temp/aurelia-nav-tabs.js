@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TabContent = exports.TabPane = exports.Tabs = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _dec3, _class4, _desc2, _value2, _class5, _descriptor2, _descriptor3, _descriptor4, _dec4, _class7;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _dec3, _dec4, _class4, _desc2, _value2, _class5, _descriptor2, _descriptor3, _descriptor4, _dec5, _class7;
 
 exports.configure = configure;
 
@@ -100,7 +100,7 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('tabs'),
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);
-var TabPane = exports.TabPane = (_dec3 = (0, _aureliaTemplating.customElement)('tab-pane'), _dec3(_class4 = (_class5 = function TabPane() {
+var TabPane = exports.TabPane = (_dec3 = (0, _aureliaTemplating.containerless)(), _dec4 = (0, _aureliaTemplating.customElement)('tab-pane'), _dec3(_class4 = _dec4(_class4 = (_class5 = function TabPane() {
   _classCallCheck(this, TabPane);
 
   _initDefineProp(this, 'model', _descriptor2, this);
@@ -117,7 +117,7 @@ var TabPane = exports.TabPane = (_dec3 = (0, _aureliaTemplating.customElement)('
 }), _descriptor4 = _applyDecoratedDescriptor(_class5.prototype, 'viewModel', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
-})), _class5)) || _class4);
-var TabContent = exports.TabContent = (_dec4 = (0, _aureliaTemplating.customElement)('tab-content'), _dec4(_class7 = function TabContent() {
+})), _class5)) || _class4) || _class4);
+var TabContent = exports.TabContent = (_dec5 = (0, _aureliaTemplating.customElement)('tab-content'), _dec5(_class7 = function TabContent() {
   _classCallCheck(this, TabContent);
 }) || _class7);

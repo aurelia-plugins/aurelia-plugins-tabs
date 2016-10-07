@@ -3,7 +3,7 @@
 System.register(['aurelia-templating'], function (_export, _context) {
   "use strict";
 
-  var bindable, customElement, _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, TabPane;
+  var bindable, containerless, customElement, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, TabPane;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -53,10 +53,11 @@ System.register(['aurelia-templating'], function (_export, _context) {
   return {
     setters: [function (_aureliaTemplating) {
       bindable = _aureliaTemplating.bindable;
+      containerless = _aureliaTemplating.containerless;
       customElement = _aureliaTemplating.customElement;
     }],
     execute: function () {
-      _export('TabPane', TabPane = (_dec = customElement('tab-pane'), _dec(_class = (_class2 = function TabPane() {
+      _export('TabPane', TabPane = (_dec = containerless(), _dec2 = customElement('tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
         
 
         _initDefineProp(this, 'model', _descriptor, this);
@@ -73,7 +74,7 @@ System.register(['aurelia-templating'], function (_export, _context) {
       }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'viewModel', [bindable], {
         enumerable: true,
         initializer: null
-      })), _class2)) || _class));
+      })), _class2)) || _class) || _class));
 
       _export('TabPane', TabPane);
     }

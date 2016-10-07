@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TabPane = undefined;
 
-var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -54,7 +54,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var TabPane = exports.TabPane = (_dec = (0, _aureliaTemplating.customElement)('tab-pane'), _dec(_class = (_class2 = function TabPane() {
+var TabPane = exports.TabPane = (_dec = (0, _aureliaTemplating.containerless)(), _dec2 = (0, _aureliaTemplating.customElement)('tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
   
 
   _initDefineProp(this, 'model', _descriptor, this);
@@ -71,4 +71,4 @@ var TabPane = exports.TabPane = (_dec = (0, _aureliaTemplating.customElement)('t
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'viewModel', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
-})), _class2)) || _class);
+})), _class2)) || _class) || _class);

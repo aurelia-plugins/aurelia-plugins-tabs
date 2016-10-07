@@ -1,4 +1,4 @@
-var _dec, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -45,9 +45,9 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { bindable, customElement } from 'aurelia-templating';
+import { bindable, containerless, customElement } from 'aurelia-templating';
 
-export var TabPane = (_dec = customElement('tab-pane'), _dec(_class = (_class2 = function TabPane() {
+export var TabPane = (_dec = containerless(), _dec2 = customElement('tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
   
 
   _initDefineProp(this, 'model', _descriptor, this);
@@ -64,4 +64,4 @@ export var TabPane = (_dec = customElement('tab-pane'), _dec(_class = (_class2 =
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'viewModel', [bindable], {
   enumerable: true,
   initializer: null
-})), _class2)) || _class);
+})), _class2)) || _class) || _class);
