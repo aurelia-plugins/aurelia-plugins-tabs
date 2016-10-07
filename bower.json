@@ -1,0 +1,29 @@
+{
+  "name": "aurelia-nav-tabs",
+  "version": "1.0.0",
+  "description": "A (Bootstrap) nav-tabs plugin for Aurelia.",
+  "keywords": [
+    "aurelia",
+    "plugin",
+    "tabs",
+    "nav",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/aurelia-plugins/aurelia-nav-tabs",
+  "main": "dist/commonjs/aurelia-nav-tabs.js",
+  "moduleType": "node",
+  "license": "MIT",
+  "authors": [
+    "Bart Lenaerts <bart@itprosolutions.be> (http://itprosolutions.be/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aurelia-plugins/aurelia-nav-tabs"
+  },
+  "dependencies": {
+    "aurelia-binding": "^1.0.1",
+    "aurelia-dependency-injection": "^1.0.0",
+    "aurelia-event-aggregator": "^1.0.0",
+    "aurelia-templating": "^1.1.0"
+  }
+}
