@@ -78,6 +78,8 @@ export class App {
 }
 ```
 
+When a tab is clicked, the event `aurelia-plugins:tabs:tab-clicked:tab-id` will be published, where `tab-id` is the corresponding id as defined in the `tabs` array.
+
 ### Tab Content
 
 Once you have your tabs setup, you will want to create your tab content which wraps tab panes.
