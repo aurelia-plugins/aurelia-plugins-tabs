@@ -4,12 +4,12 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 
 // PUBLIC METHODS
 export function configure(aurelia) {
-  aurelia.globalResources('./aurelia-nav-tabs-tabs', './aurelia-nav-tabs-tab-content', './aurelia-nav-tabs-tab-pane');
+  aurelia.globalResources('./aurelia-plugins-tabs-tabs', './aurelia-plugins-tabs-tab-content', './aurelia-plugins-tabs-tab-pane');
 }
 
 // IMPORTS
 // CLASS ATTRIBUTES
-@customElement('tabs')
+@customElement('aup-tabs')
 @inject(Element, EventAggregator)
 
 
@@ -19,7 +19,7 @@ export class Tabs {
   _element;
   _eventAggregator;
 
-  // PUBLIC PROPERTIES
+  // BINDABLE PROPERTIES
   @bindable tabs;
 
   // CONSTRUCTOR
@@ -42,7 +42,7 @@ export class Tabs {
     var active = event.target.parentElement.parentElement.querySelector('a.nav-link.active');
     var targetHref = target.getAttribute('href');
     var activeHref = active.getAttribute('href');
-    this._eventAggregator.publish('nav-tabs:clicked:' + targetHref.replace('#', ''), event);
+    this._eventAggregator.publish('aurelia-plugins-tabs:tab-clicked:' + targetHref.replace('#', ''), event);
     target.classList.add('active');
     active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');
@@ -53,12 +53,12 @@ export class Tabs {
 // IMPORTS
 // CLASS ATTRIBUTES
 @containerless()
-@customElement('tab-pane')
+@customElement('aup-tab-pane')
 
 
 // PUBLIC CLASS
 export class TabPane {
-  // PUBLIC PROPERTIES
+  // BINDABLE PROPERTIES
   @bindable model;
   @bindable tab;
   @bindable viewModel;
@@ -66,7 +66,7 @@ export class TabPane {
 
 // IMPORTS
 // CLASS ATTRIBUTES
-@customElement('tab-content')
+@customElement('aup-tab-content')
 
 
 // PUBLIC CLASS

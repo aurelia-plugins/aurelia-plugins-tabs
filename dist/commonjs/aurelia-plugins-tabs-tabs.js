@@ -3,11 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TabContent = exports.TabPane = exports.Tabs = undefined;
+exports.Tabs = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _dec3, _dec4, _class4, _desc2, _value2, _class5, _descriptor2, _descriptor3, _descriptor4, _dec5, _class7;
-
-exports.configure = configure;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor;
 
 var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 
@@ -25,7 +23,7 @@ function _initDefineProp(target, property, descriptor, context) {
   });
 }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
@@ -60,13 +58,9 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-function configure(aurelia) {
-  aurelia.globalResources('./aurelia-nav-tabs-tabs', './aurelia-nav-tabs-tab-content', './aurelia-nav-tabs-tab-pane');
-}
-
-var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
+var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
   function Tabs(element, eventAggregator) {
-    _classCallCheck(this, Tabs);
+    
 
     _initDefineProp(this, 'tabs', _descriptor, this);
 
@@ -88,7 +82,7 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('tabs'),
     var active = event.target.parentElement.parentElement.querySelector('a.nav-link.active');
     var targetHref = target.getAttribute('href');
     var activeHref = active.getAttribute('href');
-    this._eventAggregator.publish('nav-tabs:clicked:' + targetHref.replace('#', ''), event);
+    this._eventAggregator.publish('aurelia-plugins-tabs:tab-clicked:' + targetHref.replace('#', ''), event);
     target.classList.add('active');
     active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');
@@ -100,24 +94,3 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('tabs'),
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);
-var TabPane = exports.TabPane = (_dec3 = (0, _aureliaTemplating.containerless)(), _dec4 = (0, _aureliaTemplating.customElement)('tab-pane'), _dec3(_class4 = _dec4(_class4 = (_class5 = function TabPane() {
-  _classCallCheck(this, TabPane);
-
-  _initDefineProp(this, 'model', _descriptor2, this);
-
-  _initDefineProp(this, 'tab', _descriptor3, this);
-
-  _initDefineProp(this, 'viewModel', _descriptor4, this);
-}, (_descriptor2 = _applyDecoratedDescriptor(_class5.prototype, 'model', [_aureliaTemplating.bindable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class5.prototype, 'tab', [_aureliaTemplating.bindable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor4 = _applyDecoratedDescriptor(_class5.prototype, 'viewModel', [_aureliaTemplating.bindable], {
-  enumerable: true,
-  initializer: null
-})), _class5)) || _class4) || _class4);
-var TabContent = exports.TabContent = (_dec5 = (0, _aureliaTemplating.customElement)('tab-content'), _dec5(_class7 = function TabContent() {
-  _classCallCheck(this, TabContent);
-}) || _class7);

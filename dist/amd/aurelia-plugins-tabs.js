@@ -6,6 +6,6 @@ define(['exports'], function (exports) {
   });
   exports.configure = configure;
   function configure(aurelia) {
-    aurelia.globalResources('./aurelia-nav-tabs-tabs', './aurelia-nav-tabs-tab-content', './aurelia-nav-tabs-tab-pane');
+    aurelia.globalResources('./aurelia-plugins-tabs-tabs', './aurelia-plugins-tabs-tab-content', './aurelia-plugins-tabs-tab-pane');
   }
 });

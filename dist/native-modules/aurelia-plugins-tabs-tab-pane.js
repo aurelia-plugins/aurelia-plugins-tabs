@@ -10,6 +10,8 @@ function _initDefineProp(target, property, descriptor, context) {
   });
 }
 
+
+
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
   Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -45,15 +47,14 @@ function _initializerWarningHelper(descriptor, context) {
 
 import { bindable, containerless, customElement } from 'aurelia-templating';
 
-export let TabPane = (_dec = containerless(), _dec2 = customElement('tab-pane'), _dec(_class = _dec2(_class = (_class2 = class TabPane {
-  constructor() {
-    _initDefineProp(this, 'model', _descriptor, this);
+export var TabPane = (_dec = containerless(), _dec2 = customElement('aup-tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
+  
 
-    _initDefineProp(this, 'tab', _descriptor2, this);
+  _initDefineProp(this, 'model', _descriptor, this);
 
-    _initDefineProp(this, 'viewModel', _descriptor3, this);
-  }
+  _initDefineProp(this, 'tab', _descriptor2, this);
 
+  _initDefineProp(this, 'viewModel', _descriptor3, this);
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'model', [bindable], {
   enumerable: true,
   initializer: null

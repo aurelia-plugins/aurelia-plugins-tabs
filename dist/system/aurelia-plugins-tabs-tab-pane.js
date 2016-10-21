@@ -57,7 +57,7 @@ System.register(['aurelia-templating'], function (_export, _context) {
       customElement = _aureliaTemplating.customElement;
     }],
     execute: function () {
-      _export('TabPane', TabPane = (_dec = containerless(), _dec2 = customElement('tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
+      _export('TabPane', TabPane = (_dec = containerless(), _dec2 = customElement('aup-tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
         
 
         _initDefineProp(this, 'model', _descriptor, this);

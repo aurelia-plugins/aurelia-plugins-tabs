@@ -4,12 +4,12 @@ import {bindable, containerless, customElement} from 'aurelia-templating';
 
 // CLASS ATTRIBUTES
 @containerless()
-@customElement('tab-pane')
+@customElement('aup-tab-pane')
 
 
 // PUBLIC CLASS
 export class TabPane {
-  // PUBLIC PROPERTIES
+  // BINDABLE PROPERTIES
   @bindable model;
   @bindable tab;
   @bindable viewModel;

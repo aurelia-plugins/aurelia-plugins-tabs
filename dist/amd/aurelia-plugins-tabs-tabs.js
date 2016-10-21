@@ -53,7 +53,7 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', 'aureli
 
   var _dec, _dec2, _class, _desc, _value, _class2, _descriptor;
 
-  var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
+  var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
     function Tabs(element, eventAggregator) {
       
 
@@ -77,7 +77,7 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-templating', 'aureli
       var active = event.target.parentElement.parentElement.querySelector('a.nav-link.active');
       var targetHref = target.getAttribute('href');
       var activeHref = active.getAttribute('href');
-      this._eventAggregator.publish('nav-tabs:clicked:' + targetHref.replace('#', ''), event);
+      this._eventAggregator.publish('aurelia-plugins-tabs:tab-clicked:' + targetHref.replace('#', ''), event);
       target.classList.add('active');
       active.classList.remove('active');
       document.querySelector(targetHref).classList.add('active');

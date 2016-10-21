@@ -10,6 +10,8 @@ function _initDefineProp(target, property, descriptor, context) {
   });
 }
 
+
+
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
   Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -47,33 +49,39 @@ import { inject } from 'aurelia-dependency-injection';
 import { bindable, customElement } from 'aurelia-templating';
 import { EventAggregator } from 'aurelia-event-aggregator';
 
-export let Tabs = (_dec = customElement('tabs'), _dec2 = inject(Element, EventAggregator), _dec(_class = _dec2(_class = (_class2 = class Tabs {
-  constructor(element, eventAggregator) {
+export var Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
+  function Tabs(element, eventAggregator) {
+    
+
     _initDefineProp(this, 'tabs', _descriptor, this);
 
     this._element = element;
     this._eventAggregator = eventAggregator;
   }
 
-  attached() {
-    var active = this.tabs.find(tab => tab.active);
+  Tabs.prototype.attached = function attached() {
+    var active = this.tabs.find(function (tab) {
+      return tab.active;
+    });
     if (!active) return;
     document.querySelector('#' + active.id).classList.add('active');
-  }
+  };
 
-  show(event) {
+  Tabs.prototype.show = function show(event) {
     event.stopPropagation();
     var target = event.target;
     var active = event.target.parentElement.parentElement.querySelector('a.nav-link.active');
     var targetHref = target.getAttribute('href');
     var activeHref = active.getAttribute('href');
-    this._eventAggregator.publish('nav-tabs:clicked:' + targetHref.replace('#', ''), event);
+    this._eventAggregator.publish('aurelia-plugins-tabs:tab-clicked:' + targetHref.replace('#', ''), event);
     target.classList.add('active');
     active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
-  }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [bindable], {
+  };
+
+  return Tabs;
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [bindable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);

@@ -5,7 +5,7 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 
 
 // CLASS ATTRIBUTES
-@customElement('tabs')
+@customElement('aup-tabs')
 @inject(Element, EventAggregator)
 
 
@@ -15,7 +15,7 @@ export class Tabs {
   _element;
   _eventAggregator;
 
-  // PUBLIC PROPERTIES
+  // BINDABLE PROPERTIES
   @bindable tabs;
 
   // CONSTRUCTOR
@@ -38,7 +38,7 @@ export class Tabs {
     var active = event.target.parentElement.parentElement.querySelector('a.nav-link.active');
     var targetHref = target.getAttribute('href');
     var activeHref = active.getAttribute('href');
-    this._eventAggregator.publish('nav-tabs:clicked:' + targetHref.replace('#', ''), event);
+    this._eventAggregator.publish('aurelia-plugins-tabs:tab-clicked:' + targetHref.replace('#', ''), event);
     target.classList.add('active');
     active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');

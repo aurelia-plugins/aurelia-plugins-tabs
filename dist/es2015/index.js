@@ -1,1 +1,1 @@
-export * from './aurelia-nav-tabs';
+export * from './aurelia-plugins-tabs';

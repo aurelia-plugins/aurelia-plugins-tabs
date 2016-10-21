@@ -3,7 +3,7 @@ import {customElement} from 'aurelia-templating';
 
 
 // CLASS ATTRIBUTES
-@customElement('tab-content')
+@customElement('aup-tab-content')
 
 
 // PUBLIC CLASS

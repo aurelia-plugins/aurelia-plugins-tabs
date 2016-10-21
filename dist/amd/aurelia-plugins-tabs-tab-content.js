@@ -10,7 +10,7 @@ define(['exports', 'aurelia-templating'], function (exports, _aureliaTemplating)
 
   var _dec, _class;
 
-  var TabContent = exports.TabContent = (_dec = (0, _aureliaTemplating.customElement)('tab-content'), _dec(_class = function TabContent() {
+  var TabContent = exports.TabContent = (_dec = (0, _aureliaTemplating.customElement)('aup-tab-content'), _dec(_class = function TabContent() {
     
   }) || _class);
 });

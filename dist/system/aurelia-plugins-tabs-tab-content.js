@@ -12,7 +12,7 @@ System.register(['aurelia-templating'], function (_export, _context) {
       customElement = _aureliaTemplating.customElement;
     }],
     execute: function () {
-      _export('TabContent', TabContent = (_dec = customElement('tab-content'), _dec(_class = function TabContent() {
+      _export('TabContent', TabContent = (_dec = customElement('aup-tab-content'), _dec(_class = function TabContent() {
         
       }) || _class));
 

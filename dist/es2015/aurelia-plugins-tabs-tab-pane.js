@@ -1,13 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.TabPane = undefined;
-
 var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
-
-var _aureliaTemplating = require('aurelia-templating');
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -18,8 +9,6 @@ function _initDefineProp(target, property, descriptor, context) {
     value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
   });
 }
-
-
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
@@ -54,21 +43,24 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var TabPane = exports.TabPane = (_dec = (0, _aureliaTemplating.containerless)(), _dec2 = (0, _aureliaTemplating.customElement)('tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
-  
+import { bindable, containerless, customElement } from 'aurelia-templating';
 
-  _initDefineProp(this, 'model', _descriptor, this);
+export let TabPane = (_dec = containerless(), _dec2 = customElement('aup-tab-pane'), _dec(_class = _dec2(_class = (_class2 = class TabPane {
+  constructor() {
+    _initDefineProp(this, 'model', _descriptor, this);
 
-  _initDefineProp(this, 'tab', _descriptor2, this);
+    _initDefineProp(this, 'tab', _descriptor2, this);
 
-  _initDefineProp(this, 'viewModel', _descriptor3, this);
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'model', [_aureliaTemplating.bindable], {
+    _initDefineProp(this, 'viewModel', _descriptor3, this);
+  }
+
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'model', [bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tab', [_aureliaTemplating.bindable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tab', [bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'viewModel', [_aureliaTemplating.bindable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'viewModel', [bindable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);
