@@ -84,7 +84,7 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', 'aurelia-
           var active = event.target.parentElement.parentElement.querySelector('a.nav-link.active');
           var targetHref = target.getAttribute('href');
           var activeHref = active.getAttribute('href');
-          this._eventAggregator.publish('aurelia-plugins-tabs:tab-clicked:' + targetHref.replace('#', ''), event);
+          this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
           target.classList.add('active');
           active.classList.remove('active');
           document.querySelector(targetHref).classList.add('active');
