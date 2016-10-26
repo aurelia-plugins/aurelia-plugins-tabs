@@ -28,20 +28,21 @@ export class Tabs {
   attached() {
     var active = this.tabs.find(tab => tab.active);
     if (!active) return;
-    document.querySelector('#' + active.id).classList.add('active');
+    document.querySelector(`#${active.id}`).classList.add('active');
   }
 
   // PUBLIC METHODS
-  show(event) {
+  click(event) {
     event.stopPropagation();
     var target = event.target;
-    var active = event.target.parentElement.parentElement.querySelector('a.nav-link.active');
+    var active = this._element.querySelector('a.nav-link.active');
+    if (target === active) return;
     var targetHref = target.getAttribute('href');
     var activeHref = active.getAttribute('href');
-    this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
     target.classList.add('active');
     active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
+    this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
   }
 }

@@ -27,7 +27,7 @@ export declare class Tabs {
   attached(): any;
   
   // PUBLIC METHODS
-  show(event?: any): any;
+  click(event?: any): any;
 }
 
 // PUBLIC CLASS

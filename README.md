@@ -58,7 +58,7 @@ This plugin is comprised of multiple components to be used together.
 
 ### Tabs
 
-The tabs component is where your clickable tabs are generated. It has a required bindable value `tabs`.
+The tabs component is where your clickable tabs are generated. It has a required bindable attribute `tabs`.
 
 The `tabs` value expects an array of one or more objects which contains at least an `id` property and a `label` property. The `id` property is used to identify which pane this tab will open. The `label` property is the value displayed. A third optional property `active` allows us to specify if this tab is the default active tab.
 
@@ -78,7 +78,7 @@ export class App {
 }
 ```
 
-When a tab is clicked, the event `aurelia-plugins:tabs:tab-clicked:tab-id` will be published, where `tab-id` is the corresponding id as defined in the `tabs` array.
+When a tab is clicked, the event `aurelia-plugins:tabs:tab-clicked:{tab-id}` will be published, where `{tab-id}` is the corresponding id as defined in the `tabs` array. The payload is the click `event`.
 
 ### Tab Content
 

@@ -1,7 +1,7 @@
 <template>
   <ul class="nav nav-tabs">
     <li class="nav-item" repeat.for="tab of tabs">
-      <a class="nav-link ${tab.active ? 'active' : ''}" click.delegate="show($event)" href="#${tab.id}">${tab.label}</a>
+      <a class="nav-link ${tab.active ? 'active' : ''}" click.delegate="click($event)" href="#${tab.id}">${tab.label}</a>
     </li>
   </ul>
 </template>
