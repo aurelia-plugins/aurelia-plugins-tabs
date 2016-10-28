@@ -3,7 +3,7 @@
 System.register(['aurelia-dependency-injection', 'aurelia-templating', 'aurelia-event-aggregator'], function (_export, _context) {
   "use strict";
 
-  var inject, bindable, customElement, EventAggregator, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, Tabs;
+  var inject, bindable, customElement, EventAggregator, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, Tabs;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -64,7 +64,9 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', 'aurelia-
         function Tabs(element, eventAggregator) {
           
 
-          _initDefineProp(this, 'tabs', _descriptor, this);
+          _initDefineProp(this, 'class', _descriptor, this);
+
+          _initDefineProp(this, 'tabs', _descriptor2, this);
 
           this._element = element;
           this._eventAggregator = eventAggregator;
@@ -93,7 +95,12 @@ System.register(['aurelia-dependency-injection', 'aurelia-templating', 'aurelia-
         };
 
         return Tabs;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [bindable], {
+      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+          return 'nav-tabs';
+        }
+      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [bindable], {
         enumerable: true,
         initializer: null
       })), _class2)) || _class) || _class));

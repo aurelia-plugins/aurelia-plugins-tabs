@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Tabs = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
 var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 
@@ -62,7 +62,9 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
   function Tabs(element, eventAggregator) {
     
 
-    _initDefineProp(this, 'tabs', _descriptor, this);
+    _initDefineProp(this, 'class', _descriptor, this);
+
+    _initDefineProp(this, 'tabs', _descriptor2, this);
 
     this._element = element;
     this._eventAggregator = eventAggregator;
@@ -91,7 +93,12 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
   };
 
   return Tabs;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [_aureliaTemplating.bindable], {
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [_aureliaTemplating.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 'nav-tabs';
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);

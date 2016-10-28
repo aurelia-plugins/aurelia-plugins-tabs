@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -49,7 +49,9 @@ import { EventAggregator } from 'aurelia-event-aggregator';
 
 export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec(_class = _dec2(_class = (_class2 = class Tabs {
   constructor(element, eventAggregator) {
-    _initDefineProp(this, 'tabs', _descriptor, this);
+    _initDefineProp(this, 'class', _descriptor, this);
+
+    _initDefineProp(this, 'tabs', _descriptor2, this);
 
     this._element = element;
     this._eventAggregator = eventAggregator;
@@ -74,7 +76,12 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
     document.querySelector(activeHref).classList.remove('active');
     this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
   }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [bindable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return 'nav-tabs';
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [bindable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);

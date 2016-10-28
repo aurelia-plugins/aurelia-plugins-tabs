@@ -20,6 +20,7 @@ export class Tabs {
   _eventAggregator;
 
   // BINDABLE PROPERTIES
+  @bindable class = 'nav-tabs';
   @bindable tabs;
 
   // CONSTRUCTOR

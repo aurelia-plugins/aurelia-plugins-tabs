@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TabContent = exports.TabPane = exports.Tabs = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _dec3, _dec4, _class4, _desc2, _value2, _class5, _descriptor2, _descriptor3, _descriptor4, _dec5, _class7;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec3, _dec4, _class4, _desc2, _value2, _class5, _descriptor3, _descriptor4, _descriptor5, _dec5, _class7;
 
 exports.configure = configure;
 
@@ -68,7 +68,9 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
   function Tabs(element, eventAggregator) {
     _classCallCheck(this, Tabs);
 
-    _initDefineProp(this, 'tabs', _descriptor, this);
+    _initDefineProp(this, 'class', _descriptor, this);
+
+    _initDefineProp(this, 'tabs', _descriptor2, this);
 
     this._element = element;
     this._eventAggregator = eventAggregator;
@@ -97,25 +99,30 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
   };
 
   return Tabs;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [_aureliaTemplating.bindable], {
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [_aureliaTemplating.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 'nav-tabs';
+  }
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);
 var TabPane = exports.TabPane = (_dec3 = (0, _aureliaTemplating.containerless)(), _dec4 = (0, _aureliaTemplating.customElement)('aup-tab-pane'), _dec3(_class4 = _dec4(_class4 = (_class5 = function TabPane() {
   _classCallCheck(this, TabPane);
 
-  _initDefineProp(this, 'model', _descriptor2, this);
+  _initDefineProp(this, 'model', _descriptor3, this);
 
-  _initDefineProp(this, 'tab', _descriptor3, this);
+  _initDefineProp(this, 'tab', _descriptor4, this);
 
-  _initDefineProp(this, 'viewModel', _descriptor4, this);
-}, (_descriptor2 = _applyDecoratedDescriptor(_class5.prototype, 'model', [_aureliaTemplating.bindable], {
+  _initDefineProp(this, 'viewModel', _descriptor5, this);
+}, (_descriptor3 = _applyDecoratedDescriptor(_class5.prototype, 'model', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class5.prototype, 'tab', [_aureliaTemplating.bindable], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class5.prototype, 'tab', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
-}), _descriptor4 = _applyDecoratedDescriptor(_class5.prototype, 'viewModel', [_aureliaTemplating.bindable], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class5.prototype, 'viewModel', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
 })), _class5)) || _class4) || _class4);

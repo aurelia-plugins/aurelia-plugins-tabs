@@ -18,6 +18,7 @@ export declare function configure(aurelia?: any): any;
 // IMPORTS
 // CLASS ATTRIBUTES
 export declare class Tabs {
+  class: any;
   tabs: any;
   
   // CONSTRUCTOR
