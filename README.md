@@ -126,7 +126,7 @@ A tab pane can dynamically render a ViewModel using the [`compose`](<http://aure
 export class App {
   constructor() {
     this.myTabs = [
-      { id: 'tab1', label: 'Tab 1', selected: true },
+      { id: 'tab1', label: 'Tab 1', active: true },
       { id: 'tab2', label: 'Tab 2' },
       { id: 'tab3', label: 'Tab 3' }
     ];
