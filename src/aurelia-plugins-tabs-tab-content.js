@@ -7,5 +7,5 @@ import {customElement} from 'aurelia-templating';
 
 
 // PUBLIC CLASS
-export class TabContent {
+export default class TabContent {
 }

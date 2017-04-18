@@ -10,10 +10,10 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 
 
 // PUBLIC CLASS
-export class Tabs {
+export default class Tabs {
   // PRIVATE PROPERTIES
-  _element;
-  _eventAggregator;
+  element;
+  eventAggregator;
 
   // BINDABLE PROPERTIES
   @bindable class = 'nav-tabs';
@@ -21,13 +21,13 @@ export class Tabs {
 
   // CONSTRUCTOR
   constructor(element, eventAggregator) {
-    this._element = element;
-    this._eventAggregator = eventAggregator;
+    this.element = element;
+    this.eventAggregator = eventAggregator;
   }
 
   // LIFECYCLE HANDLER
   attached() {
-    var active = this.tabs.find(tab => tab.active);
+    const active = this.tabs.find(tab => tab.active);
     if (!active) return;
     document.querySelector(`#${active.id}`).classList.add('active');
   }
@@ -35,15 +35,15 @@ export class Tabs {
   // PUBLIC METHODS
   click(event) {
     event.stopPropagation();
-    var target = event.target;
-    var active = this._element.querySelector('a.nav-link.active');
+    const target = event.target;
+    const active = this.element.querySelector('a.nav-link.active');
     if (target === active) return;
-    var targetHref = target.getAttribute('href');
-    var activeHref = active.getAttribute('href');
+    const targetHref = target.getAttribute('href');
+    const activeHref = active.getAttribute('href');
     target.classList.add('active');
     active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
-    this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
+    this.eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetHref.replace('#', '')}`, event);
   }
 }

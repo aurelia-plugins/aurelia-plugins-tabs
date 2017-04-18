@@ -8,7 +8,7 @@ import {bindable, containerless, customElement} from 'aurelia-templating';
 
 
 // PUBLIC CLASS
-export class TabPane {
+export default class TabPane {
   // BINDABLE PROPERTIES
   @bindable model;
   @bindable tab;
