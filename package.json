@@ -1,6 +1,6 @@
 {
   "name": "aurelia-plugins-tabs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A tabs plugin for Aurelia.",
   "keywords": [
     "aurelia",
@@ -45,6 +45,15 @@
       "aurelia-dependency-injection": "^1.3.1",
       "aurelia-event-aggregator": "^1.0.1",
       "aurelia-templating": "^1.4.2"
+    }
+  },
+  "aurelia": {
+    "build": {
+      "resources": [
+        "aurelia-plugins-tabs/aurelia-plugins-tabs-tabs",
+        "aurelia-plugins-tabs/aurelia-plugins-tabs-tab-content",
+        "aurelia-plugins-tabs/aurelia-plugins-tabs-tab-pane"
+      ]
     }
   }
 }
