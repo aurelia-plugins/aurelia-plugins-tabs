@@ -9,12 +9,12 @@
     "tabs"
   ],
   "homepage": "https://github.com/aurelia-plugins/aurelia-plugins-tabs",
+  "license": "MIT",
+  "author": "Bart Lenaerts <bart@itprosolutions.be> (http://itprosolutions.be/)",
   "bugs": {
     "url": "https://github.com/aurelia-plugins/aurelia-plugins-tabs/issues"
   },
-  "license": "MIT",
-  "author": "Bart Lenaerts <bart@itprosolutions.be> (http://itprosolutions.be/)",
-  "main": "dist/commonjs/index.js",
+  "main": "dist/commonjs/aurelia-plugins-tabs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/aurelia-plugins/aurelia-plugins-tabs.git"
@@ -22,10 +22,9 @@
   "dependencies": {
     "aurelia-dependency-injection": "^1.3.1",
     "aurelia-event-aggregator": "^1.0.1",
-    "aurelia-templating": "^1.4.1"
+    "aurelia-templating": "^1.4.2"
   },
   "devDependencies": {
-    "babel-core": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-env": "^1.4.0",
@@ -37,7 +36,6 @@
   },
   "jspm": {
     "registry": "npm",
-    "jspmPackage": true,
     "main": "index",
     "format": "amd",
     "directories": {
@@ -46,7 +44,7 @@
     "dependencies": {
       "aurelia-dependency-injection": "^1.3.1",
       "aurelia-event-aggregator": "^1.0.1",
-      "aurelia-templating": "^1.4.1"
+      "aurelia-templating": "^1.4.2"
     }
   }
 }

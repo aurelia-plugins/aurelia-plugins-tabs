@@ -24,18 +24,6 @@ bower install aurelia-plugins-tabs
 
 ## Configuration
 
-Add to `package.json`
-
-```json
-  "aurelia": {
-    "build": {
-      "resources": [
-        "aurelia-plugins-tabs"
-      ]
-    }
-  }
-```
-
 Inside of your `main.js` or `main.ts` file simply load the plugin inside of the configure method using `.plugin()`.
 
 ```javascript
@@ -115,22 +103,23 @@ A tab pane can dynamically render a ViewModel using the [`compose`](<http://aure
 <aup-tabs tabs.bind="myTabs"></aup-tabs>
 <aup-tab-content>
   <aup-tab-pane tab="tab1">
-    // your HTML content here
+    <h1>Tab 1</h1>
+    <p>Lorem ipsum...</p>
   </aup-tab-pane>
   <aup-tab-pane tab="tab2" view-model="helloWorld"></aup-tab-pane>
-  <aup-tab-pane tab="tab3" view-model="hello" model="myModel"></aup-tab-pane>
+  <aup-tab-pane tab="tab3" view-model="hello" model.bind="myModel"></aup-tab-pane>
 </aup-tab-content>
 ```
 
 ```javascript
 export class App {
   constructor() {
+    this.myModel = { target: 'World' };
     this.myTabs = [
       { id: 'tab1', label: 'Tab 1', active: true },
       { id: 'tab2', label: 'Tab 2' },
       { id: 'tab3', label: 'Tab 3' }
     ];
-    this.myModel = { target: 'World' };
   }
 }
 ```
