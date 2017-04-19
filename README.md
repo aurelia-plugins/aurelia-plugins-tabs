@@ -48,9 +48,8 @@ This plugin is comprised of multiple components to be used together.
 
 The tabs component is where your clickable tabs are generated. It has a required bindable attribute `tabs` and a optional attribute `class`.
 
-The `tabs` attribute expects an array of one or more objects which contains at least an `id` property and a `label` property. The `id` property is used to identify which pane this tab will open. The `label` property is the value displayed. A third optional property `active` allows us to specify if this tab is the default active tab.
-
-The `class` attribute is copied from the custom element to the inner `UL` element. Useful if you want to use something else than tabs, like pills or inline. For more info see the Bootstrap [documentation](<http://v4-alpha.getbootstrap.com/components/navs/>).
+* The `tabs` attribute expects an array of one or more objects which contains at least an `id` property and a `label` property. The `id` property is used to identify which pane this tab will open. The `label` property is the value displayed. A third optional property `active` allows us to specify if this tab is the default active tab.
+* The `class` attribute is copied from the custom element to the inner `UL` element. Useful if you want to use something else than tabs, like pills or inline. For more info see the Bootstrap [documentation](<http://v4-alpha.getbootstrap.com/components/navs/>).
 
 ```html
 <aup-tabs class="nav-tabs" tabs.bind="myTabs"></aup-tabs>
