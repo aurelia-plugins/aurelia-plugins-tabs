@@ -17,6 +17,8 @@ function _initDefineProp(target, property, descriptor, context) {
   });
 }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
   Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -50,15 +52,14 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-let TabPane = exports.TabPane = (_dec = (0, _aureliaTemplating.containerless)(), _dec2 = (0, _aureliaTemplating.customElement)('aup-tab-pane'), _dec(_class = _dec2(_class = (_class2 = class TabPane {
-  constructor() {
-    _initDefineProp(this, 'model', _descriptor, this);
+var TabPane = exports.TabPane = (_dec = (0, _aureliaTemplating.containerless)(), _dec2 = (0, _aureliaTemplating.customElement)('aup-tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
+  _classCallCheck(this, TabPane);
 
-    _initDefineProp(this, 'tab', _descriptor2, this);
+  _initDefineProp(this, 'model', _descriptor, this);
 
-    _initDefineProp(this, 'viewModel', _descriptor3, this);
-  }
+  _initDefineProp(this, 'tab', _descriptor2, this);
 
+  _initDefineProp(this, 'viewModel', _descriptor3, this);
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'model', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null

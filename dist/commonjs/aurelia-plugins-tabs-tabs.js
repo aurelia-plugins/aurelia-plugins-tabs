@@ -21,6 +21,8 @@ function _initDefineProp(target, property, descriptor, context) {
   });
 }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
   var desc = {};
   Object['ke' + 'ys'](descriptor).forEach(function (key) {
@@ -54,8 +56,10 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-let Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec(_class = _dec2(_class = (_class2 = class Tabs {
-  constructor(element, eventAggregator) {
+var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
+  function Tabs(element, eventAggregator) {
+    _classCallCheck(this, Tabs);
+
     _initDefineProp(this, 'class', _descriptor, this);
 
     _initDefineProp(this, 'tabs', _descriptor2, this);
@@ -64,26 +68,30 @@ let Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
     this._eventAggregator = eventAggregator;
   }
 
-  attached() {
-    const active = this.tabs.find(tab => tab.active);
+  Tabs.prototype.attached = function attached() {
+    var active = this.tabs.find(function (tab) {
+      return tab.active;
+    });
     if (!active) return;
     document.querySelector('#' + active.id).classList.add('active');
-  }
+  };
 
-  click(event) {
+  Tabs.prototype.click = function click(event) {
     event.stopPropagation();
-    const target = event.target;
-    const active = this._element.querySelector('a.nav-link.active');
+    var target = event.target;
+    var active = this._element.querySelector('a.nav-link.active');
     if (target === active) return;
-    const targetHref = target.getAttribute('href');
-    const activeHref = active.getAttribute('href');
+    var targetHref = target.getAttribute('href');
+    var activeHref = active.getAttribute('href');
     target.classList.add('active');
     active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
     this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
-  }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [_aureliaTemplating.bindable], {
+  };
+
+  return Tabs;
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: function initializer() {
     return 'nav-tabs';

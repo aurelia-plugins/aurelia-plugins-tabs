@@ -1,17 +1,14 @@
-System.register(['aurelia-templating'], function (_export, _context) {
-  "use strict";
+'use strict';
 
-  var customElement;
-  return {
-    setters: [function (_aureliaTemplating) {
-      customElement = _aureliaTemplating.customElement;
-    }],
-    execute: function () {
-      var _dec, _class;
+exports.__esModule = true;
+exports.TabContent = undefined;
 
-      let TabContent = (_dec = customElement('aup-tab-content'), _dec(_class = class TabContent {}) || _class);
+var _dec, _class;
 
-      _export('TabContent', TabContent);
-    }
-  };
-});
+var _aureliaTemplating = require('aurelia-templating');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TabContent = exports.TabContent = (_dec = (0, _aureliaTemplating.customElement)('aup-tab-content'), _dec(_class = function TabContent() {
+  _classCallCheck(this, TabContent);
+}) || _class);
