@@ -1,4 +1,4 @@
-define(['exports'], function (exports) {
+define(['exports', 'aurelia-pal'], function (exports, _aureliaPal) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -6,6 +6,6 @@ define(['exports'], function (exports) {
   });
   exports.configure = configure;
   function configure(aurelia) {
-    aurelia.globalResources('./aurelia-plugins-tabs-tabs', './aurelia-plugins-tabs-tab-content', './aurelia-plugins-tabs-tab-pane');
+    aurelia.globalResources(_aureliaPal.PLATFORM.moduleName('./aurelia-plugins-tabs-tabs'), _aureliaPal.PLATFORM.moduleName('./aurelia-plugins-tabs-tab-content'), _aureliaPal.PLATFORM.moduleName('./aurelia-plugins-tabs-tab-pane'));
   }
 });

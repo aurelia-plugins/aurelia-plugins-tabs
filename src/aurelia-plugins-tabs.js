@@ -1,4 +1,12 @@
+// IMPORTS
+import {PLATFORM} from 'aurelia-pal';
+
+
 // PUBLIC METHODS
 export function configure(aurelia) {
-  aurelia.globalResources('./aurelia-plugins-tabs-tabs', './aurelia-plugins-tabs-tab-content', './aurelia-plugins-tabs-tab-pane');
+  aurelia.globalResources(
+    PLATFORM.moduleName('./aurelia-plugins-tabs-tabs'),
+    PLATFORM.moduleName('./aurelia-plugins-tabs-tab-content'),
+    PLATFORM.moduleName('./aurelia-plugins-tabs-tab-pane')
+  );
 }
