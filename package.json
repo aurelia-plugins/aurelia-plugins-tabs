@@ -1,6 +1,6 @@
 {
   "name": "aurelia-plugins-tabs",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "A tabs plugin for Aurelia.",
   "keywords": [
     "aurelia",
@@ -46,7 +46,7 @@
   },
   "jspm": {
     "registry": "npm",
-    "main": "index",
+    "main": "aurelia-plugins-tabs",
     "format": "amd",
     "directories": {
       "dist": "dist/amd"
