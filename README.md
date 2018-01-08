@@ -90,10 +90,10 @@ Inside the tab content, create a tab pane for each defined tab. A tab pane has a
 
 #### Composition
 
-A tab pane can dynamically render a ViewModel using the [`compose`](<http://aurelia.io/hub.html#/doc/article/aurelia/templating/latest/templating-basics/4>) element.
+A tab pane can dynamically render a ViewModel by placing the [`compose`](<http://aurelia.io/hub.html#/doc/article/aurelia/templating/latest/templating-basics/4>) element inside it.
 
 ```html
-<aup-tab-pane tab="tab1" view-model="hello" model="{ target: 'World' }"></aup-tab-pane>
+<aup-tab-pane tab="tab1"><compose view="./helloWorld.html"></compose></aup-tab-pane>
 ```
 
 ### Full Example
@@ -105,15 +105,15 @@ A tab pane can dynamically render a ViewModel using the [`compose`](<http://aure
     <h1>Tab 1</h1>
     <p>Lorem ipsum...</p>
   </aup-tab-pane>
-  <aup-tab-pane tab="tab2" view-model="helloWorld"></aup-tab-pane>
-  <aup-tab-pane tab="tab3" view-model="hello" model.bind="myModel"></aup-tab-pane>
+  <aup-tab-pane tab="tab2"><compose view="./helloWorld.html"></compose></aup-tab-pane>
+  <aup-tab-pane tab="tab3"><compose view-model="./helloWorld" model.bind="myModel"></compose></aup-tab-pane>
 </aup-tab-content>
 ```
 
 ```javascript
 export class App {
   constructor() {
-    this.myModel = { target: 'World' };
+    this.myModel = { target: 'Hello World' };
     this.myTabs = [
       { id: 'tab1', label: 'Tab 1', active: true },
       { id: 'tab2', label: 'Tab 2' },

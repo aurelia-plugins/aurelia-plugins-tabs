@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.TabPane = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor;
 
 var _aureliaTemplating = require('aurelia-templating');
 
@@ -57,18 +57,8 @@ function _initializerWarningHelper(descriptor, context) {
 var TabPane = exports.TabPane = (_dec = (0, _aureliaTemplating.containerless)(), _dec2 = (0, _aureliaTemplating.customElement)('aup-tab-pane'), _dec(_class = _dec2(_class = (_class2 = function TabPane() {
   _classCallCheck(this, TabPane);
 
-  _initDefineProp(this, 'model', _descriptor, this);
-
-  _initDefineProp(this, 'tab', _descriptor2, this);
-
-  _initDefineProp(this, 'viewModel', _descriptor3, this);
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'model', [_aureliaTemplating.bindable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tab', [_aureliaTemplating.bindable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'viewModel', [_aureliaTemplating.bindable], {
+  _initDefineProp(this, 'tab', _descriptor, this);
+}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'tab', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);
