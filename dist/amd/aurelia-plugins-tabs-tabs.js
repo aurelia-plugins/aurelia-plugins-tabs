@@ -81,7 +81,16 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-event-aggregator', '
       event.stopPropagation();
       var target = event.target;
       var active = this._element.querySelector('a.nav-link.active');
-      if (target === active) return;
+      if (target === active) {
+        return;
+      }
+      var targetId = target.getAttribute('href').substring(1);
+      var targetTab = this.tabs.find(function (tab) {
+        return tab.id === targetId;
+      });
+      if (targetTab.disabled) {
+        return;
+      }
       var targetHref = target.getAttribute('href');
       var activeHref = active.getAttribute('href');
       target.classList.add('active');

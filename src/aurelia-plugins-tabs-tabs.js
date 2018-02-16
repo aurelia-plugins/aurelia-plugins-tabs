@@ -37,7 +37,14 @@ export class Tabs {
     event.stopPropagation();
     const target = event.target;
     const active = this._element.querySelector('a.nav-link.active');
-    if (target === active) return;
+    if (target === active) {
+      return;
+    }
+    const targetId = target.getAttribute('href').substring(1);
+    const targetTab = this.tabs.find(tab => (tab.id === targetId));
+    if (targetTab.disabled) {
+      return;
+    }
     const targetHref = target.getAttribute('href');
     const activeHref = active.getAttribute('href');
     target.classList.add('active');
