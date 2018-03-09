@@ -58,16 +58,19 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
   }
 
   attached() {
-    const active = this.tabs.find(tab => tab.active);
-    if (!active) return;
-    document.querySelector(`#${active.id}`).classList.add('active');
+    this._refreshActiveTab();
+  }
+
+  tabsChanged() {
+    this._refreshActiveTab();
   }
 
   click(event) {
     event.stopPropagation();
     const target = event.target;
+
     const active = this._element.querySelector('a.nav-link.active');
-    if (target === active) {
+    if (!active || target === active) {
       return;
     }
     const targetId = target.getAttribute('href').substring(1);
@@ -82,6 +85,14 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
     this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetHref.replace('#', '')}`, event);
+  }
+
+  _refreshActiveTab() {
+    const active = this.tabs.find(tab => tab.active);
+    if (!active) {
+      return;
+    }
+    document.querySelector(`#${active.id}`).classList.add('active');
   }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [bindable], {
   enumerable: true,

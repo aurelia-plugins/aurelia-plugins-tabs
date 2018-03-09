@@ -5,5 +5,7 @@ export declare class Tabs {
     tabs: any;
     constructor(element: any, eventAggregator: any);
     attached(): void;
+    tabsChanged(): void;
     click(event: any): void;
+    _refreshActiveTab(): void;
 }

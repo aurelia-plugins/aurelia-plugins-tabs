@@ -71,18 +71,19 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
   }
 
   Tabs.prototype.attached = function attached() {
-    var active = this.tabs.find(function (tab) {
-      return tab.active;
-    });
-    if (!active) return;
-    document.querySelector('#' + active.id).classList.add('active');
+    this._refreshActiveTab();
+  };
+
+  Tabs.prototype.tabsChanged = function tabsChanged() {
+    this._refreshActiveTab();
   };
 
   Tabs.prototype.click = function click(event) {
     event.stopPropagation();
     var target = event.target;
+
     var active = this._element.querySelector('a.nav-link.active');
-    if (target === active) {
+    if (!active || target === active) {
       return;
     }
     var targetId = target.getAttribute('href').substring(1);
@@ -99,6 +100,16 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
     this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
+  };
+
+  Tabs.prototype._refreshActiveTab = function _refreshActiveTab() {
+    var active = this.tabs.find(function (tab) {
+      return tab.active;
+    });
+    if (!active) {
+      return;
+    }
+    document.querySelector('#' + active.id).classList.add('active');
   };
 
   return Tabs;

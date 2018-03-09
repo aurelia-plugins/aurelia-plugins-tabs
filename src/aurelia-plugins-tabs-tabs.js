@@ -3,11 +3,9 @@ import {inject} from 'aurelia-dependency-injection';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {bindable, customElement} from 'aurelia-templating';
 
-
 // CLASS ATTRIBUTES
 @customElement('aup-tabs')
 @inject(Element, EventAggregator)
-
 
 // PUBLIC CLASS
 export class Tabs {
@@ -27,17 +25,20 @@ export class Tabs {
 
   // LIFECYCLE HANDLERS
   attached() {
-    const active = this.tabs.find(tab => tab.active);
-    if (!active) return;
-    document.querySelector(`#${active.id}`).classList.add('active');
+    this._refreshActiveTab();
+  }
+
+  tabsChanged() {
+    this._refreshActiveTab();
   }
 
   // PUBLIC METHODS
   click(event) {
     event.stopPropagation();
     const target = event.target;
+    /* 'active' can be undefined if the list of tabs has changed */
     const active = this._element.querySelector('a.nav-link.active');
-    if (target === active) {
+    if (!active || target === active) {
       return;
     }
     const targetId = target.getAttribute('href').substring(1);
@@ -52,5 +53,13 @@ export class Tabs {
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
     this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetHref.replace('#', '')}`, event);
+  }
+
+  _refreshActiveTab() {
+    const active = this.tabs.find(tab => tab.active);
+    if (!active) {
+      return;
+    }
+    document.querySelector(`#${active.id}`).classList.add('active');
   }
 }
