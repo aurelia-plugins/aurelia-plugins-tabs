@@ -60,7 +60,7 @@ export class App {
   constructor() {
     this.myTabs = [
       { id: 'tab1', label: 'Tab 1', active: true },
-      { id: 'tab2', label: 'Tab 2' },
+      { id: 'tab2', label: 'Tab 2', disabled: true, tooltip: 'An explanation why it\'s disabled!'},
       { id: 'tab3', label: 'Tab 3' }
     ];
   }
@@ -116,7 +116,7 @@ export class App {
     this.myModel = { target: 'Hello World' };
     this.myTabs = [
       { id: 'tab1', label: 'Tab 1', active: true },
-      { id: 'tab2', label: 'Tab 2' },
+      { id: 'tab2', label: 'Tab 2', disabled: true, tooltip: 'An explanation why it\'s disabled!'},
       { id: 'tab3', label: 'Tab 3' }
     ];
   }
