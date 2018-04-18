@@ -5,7 +5,7 @@ System.register(['aurelia-pal'], function (_export, _context) {
 
   var PLATFORM;
   function configure(aurelia) {
-    aurelia.globalResources(PLATFORM.moduleName('./aurelia-plugins-tabs-tabs'), PLATFORM.moduleName('./aurelia-plugins-tabs-tab-content'), PLATFORM.moduleName('./aurelia-plugins-tabs-tab-pane'));
+    aurelia.globalResources([PLATFORM.moduleName('./aurelia-plugins-tabs-tabs'), PLATFORM.moduleName('./aurelia-plugins-tabs-tab-content'), PLATFORM.moduleName('./aurelia-plugins-tabs-tab-pane')]);
   }
 
   _export('configure', configure);

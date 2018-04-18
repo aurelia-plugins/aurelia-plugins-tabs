@@ -27,17 +27,21 @@ export class Tabs {
 
   // LIFECYCLE HANDLERS
   attached() {
-    const active = this.tabs.find(tab => tab.active);
-    if (!active) return;
-    document.querySelector(`#${active.id}`).classList.add('active');
+    this._refresh();
+  }
+
+  // BINDABLE METHODS
+  tabsChanged() {
+    this._refresh();
   }
 
   // PUBLIC METHODS
-  click(event) {
+  click(tab, event) {
     event.stopPropagation();
+    if (tab.disabled) return;
     const target = event.target;
     const active = this._element.querySelector('a.nav-link.active');
-    if (target === active) return;
+    if (!active || target === active) return;
     const targetHref = target.getAttribute('href');
     const activeHref = active.getAttribute('href');
     target.classList.add('active');
@@ -45,5 +49,12 @@ export class Tabs {
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
     this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetHref.replace('#', '')}`, event);
+  }
+
+  // PRIVATE METHODS
+  _refresh() {
+    const active = this.tabs.find(tab => tab.active);
+    if (!active) return;
+    document.querySelector(`#${active.id}`).classList.add('active');
   }
 }

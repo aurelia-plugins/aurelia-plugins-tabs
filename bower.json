@@ -1,6 +1,6 @@
 {
   "name": "aurelia-plugins-tabs",
-  "version": "2.5.2",
+  "version": "2.6.0",
   "description": "A tabs plugin for Aurelia.",
   "keywords": [
     "aurelia",
@@ -11,7 +11,7 @@
   "homepage": "https://github.com/aurelia-plugins/aurelia-plugins-tabs",
   "license": "MIT",
   "authors": [
-    "Bart Lenaerts <bart@codious.be> (http://codious.be/)"
+    "Bart Lenaerts <bart@codious.io> (https://codious.io/)"
   ],
   "moduleType": "node",
   "main": "dist/commonjs/aurelia-plugins-tabs.js",
@@ -20,9 +20,9 @@
     "url": "git://github.com/aurelia-plugins/aurelia-plugins-tabs.git"
   },
   "dependencies": {
-    "aurelia-dependency-injection": "^1.3.1",
+    "aurelia-dependency-injection": "^1.3.2",
     "aurelia-event-aggregator": "^1.0.1",
-    "aurelia-pal": "^1.3.0",
-    "aurelia-templating": "^1.4.2"
+    "aurelia-pal": "^1.8.0",
+    "aurelia-templating": "^1.7.0"
   }
 }

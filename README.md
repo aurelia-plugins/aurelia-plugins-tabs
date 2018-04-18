@@ -10,6 +10,18 @@ A tabs plugin for Aurelia.
 npm install aurelia-plugins-tabs --save
 ```
 
+When using Aurelia CLI add the following dependency to `aurelia.json`:
+
+```json
+{
+  "name": "aurelia-plugins-tabs",
+  "path": "../node_modules/aurelia-plugins-tabs/dist/amd",
+  "main": "aurelia-plugins-tabs"
+}
+```
+
+Add `node_modules/babel-polyfill/dist/polyfill.min.js` to the prepend list in `aurelia.json`. Do not forgot to add `babel-polyfill` to the dependencies in `package.json`.
+
 **JSPM**
 
 ```shell
@@ -35,8 +47,8 @@ export async function configure(aurelia) {
   aurelia.use
     .plugin('aurelia-plugins-tabs');
 
-    await aurelia.start();
-    aurelia.setRoot('app');
+  await aurelia.start();
+  aurelia.setRoot('app');
 }
 ```
 
@@ -48,8 +60,13 @@ This plugin is comprised of multiple components to be used together.
 
 The tabs component is where your clickable tabs are generated. It has a required bindable attribute `tabs` and a optional attribute `class`.
 
-* The `tabs` attribute expects an array of one or more objects which contains at least an `id` property and a `label` property. The `id` property is used to identify which pane this tab will open. The `label` property is the value displayed. A third optional property `active` allows us to specify if this tab is the default active tab.
-* The `class` attribute is copied from the custom element to the inner `UL` element. Useful if you want to use something else than tabs, like pills or inline. For more info see the Bootstrap [documentation](<http://v4-alpha.getbootstrap.com/components/navs/>).
+* The `tabs` attribute expects an array of one or more objects which contains at least an `id` property and a `label` property.
+  * The `id` property is used to identify which pane this tab will open.
+  * The `label` property is the value displayed.
+  * The optional property `active` allows us to specify if this tab is the default active tab.
+  * The optional property `disabled` allows us to disable a certain tab.
+  * The optional property `tooltip` shows a tooltip beside the specified tab. For more info see the [Bootstrap documentation](<https://getbootstrap.com/docs/4.1/components/tooltips/>).
+* The `class` attribute is copied from the custom element to the inner `UL` element. Useful if you want to use something else than tabs, like pills or inline. For more info see the [Bootstrap documentation](<https://getbootstrap.com/docs/4.1/components/navs/>).
 
 ```html
 <aup-tabs class="nav-tabs" tabs.bind="myTabs"></aup-tabs>
@@ -60,7 +77,7 @@ export class App {
   constructor() {
     this.myTabs = [
       { id: 'tab1', label: 'Tab 1', active: true },
-      { id: 'tab2', label: 'Tab 2' },
+      { id: 'tab2', label: 'Tab 2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
       { id: 'tab3', label: 'Tab 3' }
     ];
   }
@@ -116,7 +133,7 @@ export class App {
     this.myModel = { target: 'Hello World' };
     this.myTabs = [
       { id: 'tab1', label: 'Tab 1', active: true },
-      { id: 'tab2', label: 'Tab 2' },
+      { id: 'tab2', label: 'Tab 2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
       { id: 'tab3', label: 'Tab 3' }
     ];
   }

@@ -71,18 +71,19 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
   }
 
   Tabs.prototype.attached = function attached() {
-    var active = this.tabs.find(function (tab) {
-      return tab.active;
-    });
-    if (!active) return;
-    document.querySelector('#' + active.id).classList.add('active');
+    this._refresh();
   };
 
-  Tabs.prototype.click = function click(event) {
+  Tabs.prototype.tabsChanged = function tabsChanged() {
+    this._refresh();
+  };
+
+  Tabs.prototype.click = function click(tab, event) {
     event.stopPropagation();
+    if (tab.disabled) return;
     var target = event.target;
     var active = this._element.querySelector('a.nav-link.active');
-    if (target === active) return;
+    if (!active || target === active) return;
     var targetHref = target.getAttribute('href');
     var activeHref = active.getAttribute('href');
     target.classList.add('active');
@@ -90,6 +91,14 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
     document.querySelector(targetHref).classList.add('active');
     document.querySelector(activeHref).classList.remove('active');
     this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
+  };
+
+  Tabs.prototype._refresh = function _refresh() {
+    var active = this.tabs.find(function (tab) {
+      return tab.active;
+    });
+    if (!active) return;
+    document.querySelector('#' + active.id).classList.add('active');
   };
 
   return Tabs;
