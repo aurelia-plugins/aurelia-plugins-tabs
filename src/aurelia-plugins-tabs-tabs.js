@@ -41,13 +41,15 @@ export class Tabs {
     if (tab.disabled) return;
     const target = event.target;
     const active = this._element.querySelector('a.nav-link.active');
-    if (!active || target === active) return;
+    if (target === active) return;
     const targetHref = target.getAttribute('href');
-    const activeHref = active.getAttribute('href');
     target.classList.add('active');
-    active.classList.remove('active');
     document.querySelector(targetHref).classList.add('active');
-    document.querySelector(activeHref).classList.remove('active');
+    if (active) {
+      const activeHref = active.getAttribute('href');
+      active.classList.remove('active');
+      document.querySelector(activeHref).classList.remove('active');
+    }
     this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetHref.replace('#', '')}`, event);
   }
 
@@ -55,6 +57,7 @@ export class Tabs {
   _refresh() {
     const active = this.tabs.find(tab => tab.active);
     if (!active) return;
-    document.querySelector(`#${active.id}`).classList.add('active');
+    const element = document.querySelector(`#${active.id}`);
+    if (element) element.classList.add('active');
   }
 }

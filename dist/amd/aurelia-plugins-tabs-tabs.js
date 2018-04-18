@@ -82,13 +82,15 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-event-aggregator', '
       if (tab.disabled) return;
       var target = event.target;
       var active = this._element.querySelector('a.nav-link.active');
-      if (!active || target === active) return;
+      if (target === active) return;
       var targetHref = target.getAttribute('href');
-      var activeHref = active.getAttribute('href');
       target.classList.add('active');
-      active.classList.remove('active');
       document.querySelector(targetHref).classList.add('active');
-      document.querySelector(activeHref).classList.remove('active');
+      if (active) {
+        var activeHref = active.getAttribute('href');
+        active.classList.remove('active');
+        document.querySelector(activeHref).classList.remove('active');
+      }
       this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
     };
 
@@ -97,7 +99,8 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-event-aggregator', '
         return tab.active;
       });
       if (!active) return;
-      document.querySelector('#' + active.id).classList.add('active');
+      var element = document.querySelector('#' + active.id);
+      if (element) element.classList.add('active');
     };
 
     return Tabs;
