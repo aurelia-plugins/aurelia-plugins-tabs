@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Tabs = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 var _aureliaDependencyInjection = require('aurelia-dependency-injection');
 
@@ -66,6 +66,8 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
 
     _initDefineProp(this, 'tabs', _descriptor2, this);
 
+    _initDefineProp(this, 'translate', _descriptor3, this);
+
     this._element = element;
     this._eventAggregator = eventAggregator;
   }
@@ -113,4 +115,9 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [_aureliaTemplating.bindable], {
   enumerable: true,
   initializer: null
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'translate', [_aureliaTemplating.bindable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return false;
+  }
 })), _class2)) || _class) || _class);

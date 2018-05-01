@@ -1,7 +1,10 @@
 <template>
   <ul class="nav ${class}">
     <li class="nav-item ${tab.disabled ? 'disabled' : ''}" data-toggle="tooltip" repeat.for="tab of tabs" title="${tab.tooltip}">
-      <a class="nav-link ${tab.active ? 'active' : ''}" click.delegate="click(tab, $event)" href="#${tab.id}">${tab.label}</a>
+      <a class="nav-link ${tab.active ? 'active' : ''}" click.delegate="click(tab, $event)" href="#${tab.id}">
+        <template if.bind="translate">${tab.label & t}</template>
+        <template if.bind="!translate">${tab.label}</template>
+      </a>
     </li>
   </ul>
 </template>

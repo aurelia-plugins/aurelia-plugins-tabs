@@ -62,27 +62,28 @@ This plugin is comprised of multiple components to be used together.
 
 ### Tabs
 
-The tabs component is where your clickable tabs are generated. It has a required bindable attribute `tabs` and a optional attribute `class`.
+The tabs component is where your clickable tabs are generated. It has a required bindable attribute `tabs` and two optional attributes `class` and `translate`.
 
 * The `tabs` attribute expects an array of one or more objects which contains at least an `id` property and a `label` property.
   * The `id` property is used to identify which pane this tab will open.
   * The `label` property is the value displayed.
   * The optional property `active` allows us to specify if this tab is the default active tab.
   * The optional property `disabled` allows us to disable a certain tab.
-  * The optional property `tooltip` shows a tooltip beside the specified tab. For more info see the [Bootstrap documentation](<https://getbootstrap.com/docs/4.1/components/tooltips/>).
-* The `class` attribute is copied from the custom element to the inner `UL` element. Useful if you want to use something else than tabs, like pills or inline. For more info see the [Bootstrap documentation](<https://getbootstrap.com/docs/4.1/components/navs/>).
+  * The optional property `tooltip` shows a tooltip beside the specified tab. For more info see the [Bootstrap documentation](https://getbootstrap.com/docs/4.1/components/tooltips/).
+* The `class` attribute is copied from the custom element to the inner `UL` element. Useful if you want to use something else than tabs, like pills or inline. For more info see the [Bootstrap documentation](https://getbootstrap.com/docs/4.1/components/navs/).
+* If the `translate` attribute is set to `true` the value provided in `label` will be used as a translation key according to [`aurelia-i18n`](http://aurelia.io/docs/plugins/i18n). The `translate` attribute is `false` by default.
 
 ```html
-<aup-tabs class="nav-tabs" tabs.bind="myTabs"></aup-tabs>
+<aup-tabs class="nav-tabs" tabs.bind="myTabs" translate="true"></aup-tabs>
 ```
 
 ```javascript
 export class App {
   constructor() {
     this.myTabs = [
-      { id: 'tab1', label: 'Tab 1', active: true },
-      { id: 'tab2', label: 'Tab 2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
-      { id: 'tab3', label: 'Tab 3' }
+      { id: 'tab1', label: 'tabs.tab1', active: true },
+      { id: 'tab2', label: 'tabs.tab2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
+      { id: 'tab3', label: 'tabs.tab3' }
     ];
   }
 }
@@ -111,7 +112,7 @@ Inside the tab content, create a tab pane for each defined tab. A tab pane has a
 
 #### Composition
 
-A tab pane can dynamically render a ViewModel by placing the [`compose`](<http://aurelia.io/hub.html#/doc/article/aurelia/templating/latest/templating-basics/4>) element inside it.
+A tab pane can dynamically render a ViewModel by placing the [`compose`](http://aurelia.io/hub.html#/doc/article/aurelia/templating/latest/templating-basics/4) element inside it.
 
 ```html
 <aup-tab-pane tab="tab1"><compose view="./helloWorld.html"></compose></aup-tab-pane>
@@ -120,7 +121,7 @@ A tab pane can dynamically render a ViewModel by placing the [`compose`](<http:/
 ### Full Example
 
 ```html
-<aup-tabs tabs.bind="myTabs"></aup-tabs>
+<aup-tabs class="nav-tabs" tabs.bind="myTabs" translate="true"></aup-tabs>
 <aup-tab-content>
   <aup-tab-pane tab="tab1">
     <h1>Tab 1</h1>
@@ -136,9 +137,9 @@ export class App {
   constructor() {
     this.myModel = { target: 'Hello World' };
     this.myTabs = [
-      { id: 'tab1', label: 'Tab 1', active: true },
-      { id: 'tab2', label: 'Tab 2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
-      { id: 'tab3', label: 'Tab 3' }
+      { id: 'tab1', label: 'tabs.tab1', active: true },
+      { id: 'tab2', label: 'tabs.tab2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
+      { id: 'tab3', label: 'tabs.tab3' }
     ];
   }
 }

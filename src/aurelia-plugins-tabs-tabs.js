@@ -18,6 +18,7 @@ export class Tabs {
   // BINDABLE PROPERTIES
   @bindable class = 'nav-tabs';
   @bindable tabs;
+  @bindable translate = false;
 
   // CONSTRUCTOR
   constructor(element, eventAggregator) {

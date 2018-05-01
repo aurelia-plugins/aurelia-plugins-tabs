@@ -3,6 +3,7 @@ export declare class Tabs {
     _eventAggregator: any;
     class: string;
     tabs: any;
+    translate: boolean;
     constructor(element: any, eventAggregator: any);
     attached(): void;
     tabsChanged(): void;

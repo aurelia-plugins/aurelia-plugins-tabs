@@ -55,7 +55,7 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-event-aggregator', '
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+  var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
   var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
     function Tabs(element, eventAggregator) {
@@ -64,6 +64,8 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-event-aggregator', '
       _initDefineProp(this, 'class', _descriptor, this);
 
       _initDefineProp(this, 'tabs', _descriptor2, this);
+
+      _initDefineProp(this, 'translate', _descriptor3, this);
 
       this._element = element;
       this._eventAggregator = eventAggregator;
@@ -112,5 +114,10 @@ define(['exports', 'aurelia-dependency-injection', 'aurelia-event-aggregator', '
   }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [_aureliaTemplating.bindable], {
     enumerable: true,
     initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'translate', [_aureliaTemplating.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+      return false;
+    }
   })), _class2)) || _class) || _class);
 });

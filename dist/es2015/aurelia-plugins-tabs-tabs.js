@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -53,6 +53,8 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
 
     _initDefineProp(this, 'tabs', _descriptor2, this);
 
+    _initDefineProp(this, 'translate', _descriptor3, this);
+
     this._element = element;
     this._eventAggregator = eventAggregator;
   }
@@ -96,4 +98,9 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabs', [bindable], {
   enumerable: true,
   initializer: null
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'translate', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return false;
+  }
 })), _class2)) || _class) || _class);
