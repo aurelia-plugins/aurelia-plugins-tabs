@@ -144,3 +144,29 @@ export class App {
   }
 }
 ```
+
+### Dynamic Tabs
+
+You can generate tabs with a `repeat.for` property and bind the tab content to other modules like this:
+
+```html
+<aup-tabs class="nav-tabs" tabs.bind="myTabs" translate="true"></aup-tabs>
+<aup-tab-content>
+  <aup-tab-pane tab="${tab.id}" repeat.for="tab of myTabs">
+    <compose view="${tab.view}"></compose>
+  </aup-tab-pane>
+</aup-tab-content>
+```
+
+```javascript
+import {PLATFORM} from 'aurelia-framework';
+
+export class App {
+  constructor() {
+    this.myTabs = [
+      { id: 'tab1', label: 'tabs.tab1', view: PLATFORM.moduleName('tab1'), active: true },
+      { id: 'tab2', label: 'tabs.tab2', view: PLATFORM.moduleName('tab2') }
+    ];
+  }
+}
+```
