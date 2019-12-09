@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -46,14 +46,17 @@ function _initializerWarningHelper(descriptor, context) {
 import { inject } from 'aurelia-dependency-injection';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { bindable, customElement } from 'aurelia-templating';
+import { bindingMode } from 'aurelia-binding';
 
-export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec(_class = _dec2(_class = (_class2 = class Tabs {
+export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec3 = bindable({ defaultBindingMode: bindingMode.toView }), _dec(_class = _dec2(_class = (_class2 = class Tabs {
   constructor(element, eventAggregator) {
     _initDefineProp(this, 'class', _descriptor, this);
 
     _initDefineProp(this, 'tabs', _descriptor2, this);
 
     _initDefineProp(this, 'translate', _descriptor3, this);
+
+    _initDefineProp(this, 'activeTabId', _descriptor4, this);
 
     this._element = element;
     this._eventAggregator = eventAggregator;
@@ -68,28 +71,68 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
   }
 
   click(tab, event) {
+    let currentActiveId;
+    let targetId;
     event.stopPropagation();
     if (tab.disabled) return;
     const target = event.target;
-    const active = this._element.querySelector('a.nav-link.active');
-    if (target === active) return;
+    const currentActiveTab = this._element.querySelector('a.nav-link.active');
+    if (target === currentActiveTab) return;
     const targetHref = target.getAttribute('href');
     target.classList.add('active');
     document.querySelector(targetHref).classList.add('active');
-    if (active) {
-      const activeHref = active.getAttribute('href');
-      active.classList.remove('active');
-      document.querySelector(activeHref).classList.remove('active');
+    targetId = targetHref.replace('#', '');
+    if (currentActiveTab) {
+      const currentActiveHref = currentActiveTab.getAttribute('href');
+      currentActiveId = currentActiveHref.replace('#', '');
+      currentActiveTab.classList.remove('active');
+      document.querySelector(currentActiveHref).classList.remove('active');
     }
-    this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetHref.replace('#', '')}`, event);
+    this._updateActiveStatusInBoundTabs(currentActiveId, targetId);
+    this._eventAggregator.publish(`aurelia-plugins:tabs:active-tab-changed`, { from: currentActiveId, to: targetId });
+    this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetId}`, event);
   }
 
   _refresh() {
     const active = this.tabs.find(tab => tab.active);
     if (!active) return;
-    const element = document.querySelector(`#${active.id}`);
-    if (element) element.classList.add('active');
+    this.activeTabId = active.id;
+    if (!this._addTabActiveClass(active.id)) {
+      setTimeout(() => {
+        this._addTabActiveClass(active.id);
+      }, 0);
+    }
   }
+
+  _addTabActiveClass(tabId) {
+    const element = document.querySelector(`#${tabId}`);
+    if (element) {
+      element.classList.add('active');
+    }
+    return !!element;
+  }
+
+  _updateActiveStatusInBoundTabs(activeId, targetId) {
+    this._setTabActiveState(activeId, false);
+    this._setTabActiveState(targetId, true);
+  }
+
+  _setTabActiveState(tabId, newActiveState) {
+    if (tabId) {
+      let tab = this._findTab(tabId);
+      if (tab) {
+        tab.active = newActiveState;
+        if (newActiveState) {
+          this.activeTabId = tabId;
+        }
+      }
+    }
+  }
+
+  _findTab(targetId) {
+    return this.tabs.find(tab => tab.id === targetId);
+  }
+
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [bindable], {
   enumerable: true,
   initializer: function () {
@@ -102,5 +145,10 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
   enumerable: true,
   initializer: function () {
     return false;
+  }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'activeTabId', [_dec3], {
+  enumerable: true,
+  initializer: function () {
+    return null;
   }
 })), _class2)) || _class) || _class);
