@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-dependency-injection', 'aurelia-event-aggregator', 'aurelia-templating'], function (_export, _context) {
+System.register(['aurelia-dependency-injection', 'aurelia-event-aggregator', 'aurelia-templating', 'aurelia-binding'], function (_export, _context) {
   "use strict";
 
-  var inject, EventAggregator, bindable, customElement, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, Tabs;
+  var inject, EventAggregator, bindable, customElement, bindingMode, _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, Tabs;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -62,9 +62,11 @@ System.register(['aurelia-dependency-injection', 'aurelia-event-aggregator', 'au
     }, function (_aureliaTemplating) {
       bindable = _aureliaTemplating.bindable;
       customElement = _aureliaTemplating.customElement;
+    }, function (_aureliaBinding) {
+      bindingMode = _aureliaBinding.bindingMode;
     }],
     execute: function () {
-      _export('Tabs', Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('Tabs', Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec3 = bindable({ defaultBindingMode: bindingMode.toView }), _dec(_class = _dec2(_class = (_class2 = function () {
         function Tabs(element, eventAggregator) {
           _classCallCheck(this, Tabs);
 
@@ -73,6 +75,8 @@ System.register(['aurelia-dependency-injection', 'aurelia-event-aggregator', 'au
           _initDefineProp(this, 'tabs', _descriptor2, this);
 
           _initDefineProp(this, 'translate', _descriptor3, this);
+
+          _initDefineProp(this, 'activeTabId', _descriptor4, this);
 
           this._element = element;
           this._eventAggregator = eventAggregator;
@@ -87,29 +91,72 @@ System.register(['aurelia-dependency-injection', 'aurelia-event-aggregator', 'au
         };
 
         Tabs.prototype.click = function click(tab, event) {
+          var currentActiveId = void 0;
+          var targetId = void 0;
           event.stopPropagation();
           if (tab.disabled) return;
           var target = event.target;
-          var active = this._element.querySelector('a.nav-link.active');
-          if (target === active) return;
+          var currentActiveTab = this._element.querySelector('a.nav-link.active');
+          if (target === currentActiveTab) return;
           var targetHref = target.getAttribute('href');
           target.classList.add('active');
           document.querySelector(targetHref).classList.add('active');
-          if (active) {
-            var activeHref = active.getAttribute('href');
-            active.classList.remove('active');
-            document.querySelector(activeHref).classList.remove('active');
+          targetId = targetHref.replace('#', '');
+          if (currentActiveTab) {
+            var currentActiveHref = currentActiveTab.getAttribute('href');
+            currentActiveId = currentActiveHref.replace('#', '');
+            currentActiveTab.classList.remove('active');
+            document.querySelector(currentActiveHref).classList.remove('active');
           }
-          this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetHref.replace('#', ''), event);
+          this._updateActiveStatusInBoundTabs(currentActiveId, targetId);
+          this._eventAggregator.publish('aurelia-plugins:tabs:active-tab-changed', { from: currentActiveId, to: targetId });
+          this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetId, event);
         };
 
         Tabs.prototype._refresh = function _refresh() {
+          var _this = this;
+
           var active = this.tabs.find(function (tab) {
             return tab.active;
           });
           if (!active) return;
-          var element = document.querySelector('#' + active.id);
-          if (element) element.classList.add('active');
+          this.activeTabId = active.id;
+          if (!this._addTabActiveClass(active.id)) {
+            setTimeout(function () {
+              _this._addTabActiveClass(active.id);
+            }, 0);
+          }
+        };
+
+        Tabs.prototype._addTabActiveClass = function _addTabActiveClass(tabId) {
+          var element = document.querySelector('#' + tabId);
+          if (element) {
+            element.classList.add('active');
+          }
+          return !!element;
+        };
+
+        Tabs.prototype._updateActiveStatusInBoundTabs = function _updateActiveStatusInBoundTabs(activeId, targetId) {
+          this._setTabActiveState(activeId, false);
+          this._setTabActiveState(targetId, true);
+        };
+
+        Tabs.prototype._setTabActiveState = function _setTabActiveState(tabId, newActiveState) {
+          if (tabId) {
+            var tab = this._findTab(tabId);
+            if (tab) {
+              tab.active = newActiveState;
+              if (newActiveState) {
+                this.activeTabId = tabId;
+              }
+            }
+          }
+        };
+
+        Tabs.prototype._findTab = function _findTab(targetId) {
+          return this.tabs.find(function (tab) {
+            return tab.id === targetId;
+          });
         };
 
         return Tabs;
@@ -125,6 +172,11 @@ System.register(['aurelia-dependency-injection', 'aurelia-event-aggregator', 'au
         enumerable: true,
         initializer: function initializer() {
           return false;
+        }
+      }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'activeTabId', [_dec3], {
+        enumerable: true,
+        initializer: function initializer() {
+          return null;
         }
       })), _class2)) || _class) || _class));
 
