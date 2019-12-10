@@ -67,21 +67,20 @@ The tabs component is where your clickable tabs are generated. It has a required
 * The `tabs` attribute expects an array of one or more objects which contains at least an `id` property and a `label` property.
   * The `id` property is used to identify which pane this tab will open.
   * The `label` property is the value displayed.
-  * The optional property `active` allows us to specify if this tab is the default active tab. This property is updated when the active tab changes.
   * The optional property `disabled` allows us to disable a certain tab.
   * The optional property `tooltip` shows a tooltip beside the specified tab. For more info see the [Bootstrap documentation](https://getbootstrap.com/docs/4.1/components/tooltips/).
 * The `class` attribute is copied from the custom element to the inner `UL` element. Useful if you want to use something else than tabs, like pills or inline. For more info see the [Bootstrap documentation](https://getbootstrap.com/docs/4.1/components/navs/).
 * If the `translate` attribute is set to `true` the value provided in `label` will be used as a translation key according to [`aurelia-i18n`](http://aurelia.io/docs/plugins/i18n). The `translate` attribute is `false` by default.
 
 ```html
-<aup-tabs class="nav-tabs" tabs.bind="myTabs" active-tab-id.from-view="tabId" translate="true"></aup-tabs>
+<aup-tabs class="nav-tabs" tabs.bind="myTabs" active-tab-id.two-way="tabId" translate="true"></aup-tabs>
 ```
 
 ```javascript
 export class App {
   constructor() {
     this.myTabs = [
-      { id: 'tab1', label: 'tabs.tab1', active: true },
+      { id: 'tab1', label: 'tabs.tab1' },
       { id: 'tab2', label: 'tabs.tab2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
       { id: 'tab3', label: 'tabs.tab3' }
     ];
@@ -89,8 +88,9 @@ export class App {
 }
 ```
 
-When a tab is clicked, the event `aurelia-plugins:tabs:tab-clicked:{tab-id}` will be published, where `{tab-id}` is the corresponding id as defined in the `tabs` array. The payload is the click `event`. The active-tag-id bound property will also be updatedf. 
+When a tab is clicked, the event `aurelia-plugins:tabs:tab-clicked:{tab-id}` will be published, where `{tab-id}` is the corresponding id as defined in the `tabs` array. The payload is the click `event`.
 The event `aurelia-plugins:tabs:active-tab-changed` to allow subscribing to a single event, with a payload containing the Ids of the tabs in the form: `{from: currentActiveId, to: targetId}`
+The active-tag-id bound property will also be updated when the active tab is changed, but this happens after the above events have fired.
 
 ### Tab Content
 
@@ -122,7 +122,7 @@ A tab pane can dynamically render a ViewModel by placing the [`compose`](http://
 ### Full Example
 
 ```html
-<aup-tabs class="nav-tabs" tabs.bind="myTabs" translate="true"></aup-tabs>
+<aup-tabs class="nav-tabs" tabs.bind="myTabs" translate="true" active-tab-id.two-way="activeTabId"></aup-tabs>
 <aup-tab-content>
   <aup-tab-pane tab="tab1">
     <h1>Tab 1</h1>
@@ -137,8 +137,9 @@ A tab pane can dynamically render a ViewModel by placing the [`compose`](http://
 export class App {
   constructor() {
     this.myModel = { target: 'Hello World' };
+    this.activeTabId = 'tab1';
     this.myTabs = [
-      { id: 'tab1', label: 'tabs.tab1', active: true },
+      { id: 'tab1', label: 'tabs.tab1' },
       { id: 'tab2', label: 'tabs.tab2', disabled: true, tooltip: 'An explanation why it\'s disabled!' },
       { id: 'tab3', label: 'tabs.tab3' }
     ];
@@ -165,7 +166,7 @@ import {PLATFORM} from 'aurelia-framework';
 export class App {
   constructor() {
     this.myTabs = [
-      { id: 'tab1', label: 'tabs.tab1', view: PLATFORM.moduleName('tab1'), active: true },
+      { id: 'tab1', label: 'tabs.tab1', view: PLATFORM.moduleName('tab1') },
       { id: 'tab2', label: 'tabs.tab2', view: PLATFORM.moduleName('tab2') }
     ];
   }

@@ -1,6 +1,6 @@
 {
   "name": "aurelia-plugins-tabs",
-  "version": "2.6.9",
+  "version": "3.0.1",
   "description": "A tabs plugin for Aurelia.",
   "keywords": [
     "aurelia",
@@ -21,10 +21,10 @@
   },
   "dependencies": {
     "aurelia-binding": "^2.5.0",
-    "aurelia-dependency-injection": "^1.3.2",
-    "aurelia-event-aggregator": "^1.0.1",
-    "aurelia-pal": "^1.8.0",
-    "aurelia-templating": "^1.7.0"
+    "aurelia-dependency-injection": "^1.5.2",
+    "aurelia-event-aggregator": "^1.0.3",
+    "aurelia-pal": "^1.8.2",
+    "aurelia-templating": "^1.10.2"
   },
   "devDependencies": {
     "babel-core": "6.26.0",

@@ -60,7 +60,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec3 = (0, _aureliaTemplating.bindable)({ defaultBindingMode: _aureliaBinding.bindingMode.toView }), _dec(_class = _dec2(_class = (_class2 = function () {
+var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tabs'), _dec2 = (0, _aureliaDependencyInjection.inject)(Element, _aureliaEventAggregator.EventAggregator), _dec3 = (0, _aureliaTemplating.bindable)({ defaultBindingMode: _aureliaBinding.bindingMode.twoWay }), _dec(_class = _dec2(_class = (_class2 = function () {
   function Tabs(element, eventAggregator) {
     _classCallCheck(this, Tabs);
 
@@ -85,71 +85,51 @@ var Tabs = exports.Tabs = (_dec = (0, _aureliaTemplating.customElement)('aup-tab
   };
 
   Tabs.prototype.click = function click(tab, event) {
-    var currentActiveId = void 0;
-    var targetId = void 0;
+    var previousActiveId = void 0;
     event.stopPropagation();
-    if (tab.disabled) return;
-    var target = event.target;
-    var currentActiveTab = this._element.querySelector('a.nav-link.active');
-    if (target === currentActiveTab) return;
-    var targetHref = target.getAttribute('href');
-    target.classList.add('active');
-    document.querySelector(targetHref).classList.add('active');
-    targetId = targetHref.replace('#', '');
-    if (currentActiveTab) {
-      var currentActiveHref = currentActiveTab.getAttribute('href');
-      currentActiveId = currentActiveHref.replace('#', '');
-      currentActiveTab.classList.remove('active');
-      document.querySelector(currentActiveHref).classList.remove('active');
+    if (!tab.disabled) {
+      var target = event.target;
+      var currentActiveTab = this._element.querySelector('a.nav-link.active');
+      if (target !== currentActiveTab) {
+        var targetHref = target.getAttribute('href');
+        var targetId = targetHref.replace('#', '');
+        previousActiveId = this.activeTabId;
+        this._setTabActiveState(targetId);
+        this._eventAggregator.publish('aurelia-plugins:tabs:active-tab-changed', { from: previousActiveId, to: targetId });
+        this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetId, event);
+      }
     }
-    this._updateActiveStatusInBoundTabs(currentActiveId, targetId);
-    this._eventAggregator.publish('aurelia-plugins:tabs:active-tab-changed', { from: currentActiveId, to: targetId });
-    this._eventAggregator.publish('aurelia-plugins:tabs:tab-clicked:' + targetId, event);
+  };
+
+  Tabs.prototype.isActive = function isActive(tab) {
+    return tab.id === this.activeTabId;
   };
 
   Tabs.prototype._refresh = function _refresh() {
     var _this = this;
 
-    var active = this.tabs.find(function (tab) {
-      return tab.active;
-    });
-    if (!active) return;
-    this.activeTabId = active.id;
-    if (!this._addTabActiveClass(active.id)) {
-      setTimeout(function () {
-        _this._addTabActiveClass(active.id);
-      }, 0);
-    }
+    setTimeout(function () {
+      _this._setTabActiveState(_this.activeTabId);
+    }, 0);
   };
 
-  Tabs.prototype._addTabActiveClass = function _addTabActiveClass(tabId) {
-    var element = document.querySelector('#' + tabId);
-    if (element) {
-      element.classList.add('active');
-    }
-    return !!element;
-  };
+  Tabs.prototype._setTabActiveState = function _setTabActiveState(newActiveId) {
+    var _this2 = this;
 
-  Tabs.prototype._updateActiveStatusInBoundTabs = function _updateActiveStatusInBoundTabs(activeId, targetId) {
-    this._setTabActiveState(activeId, false);
-    this._setTabActiveState(targetId, true);
-  };
-
-  Tabs.prototype._setTabActiveState = function _setTabActiveState(tabId, newActiveState) {
-    if (tabId) {
-      var tab = this._findTab(tabId);
-      if (tab) {
-        tab.active = newActiveState;
-        if (newActiveState) {
-          this.activeTabId = tabId;
+    this.activeTabId = newActiveId;
+    this.tabs.forEach(function (tab) {
+      var tabPane = '#' + tab.id;
+      var navLink = _this2._element.querySelector('a.nav-link.' + tab.id);
+      var tabContents = _this2._element.parentElement.querySelector(tabPane);
+      if (navLink && tabContents) {
+        if (tab.id === _this2.activeTabId) {
+          tabContents.classList.add('active');
+          navLink.classList.add('active');
+        } else {
+          tabContents.classList.remove('active');
+          navLink.classList.remove('active');
         }
       }
-    }
-  };
-
-  Tabs.prototype._findTab = function _findTab(targetId) {
-    return this.tabs.find(function (tab) {
-      return tab.id === targetId;
     });
   };
 
