@@ -48,7 +48,7 @@ import { EventAggregator } from 'aurelia-event-aggregator';
 import { bindable, customElement } from 'aurelia-templating';
 import { bindingMode } from 'aurelia-binding';
 
-export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec3 = bindable({ defaultBindingMode: bindingMode.toView }), _dec(_class = _dec2(_class = (_class2 = class Tabs {
+export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, EventAggregator), _dec3 = bindable({ defaultBindingMode: bindingMode.twoWay }), _dec(_class = _dec2(_class = (_class2 = class Tabs {
   constructor(element, eventAggregator) {
     _initDefineProp(this, 'class', _descriptor, this);
 
@@ -71,68 +71,49 @@ export let Tabs = (_dec = customElement('aup-tabs'), _dec2 = inject(Element, Eve
   }
 
   click(tab, event) {
-    let currentActiveId;
-    let targetId;
+    let previousActiveId;
     event.stopPropagation();
-    if (tab.disabled) return;
-    const target = event.target;
-    const currentActiveTab = this._element.querySelector('a.nav-link.active');
-    if (target === currentActiveTab) return;
-    const targetHref = target.getAttribute('href');
-    target.classList.add('active');
-    document.querySelector(targetHref).classList.add('active');
-    targetId = targetHref.replace('#', '');
-    if (currentActiveTab) {
-      const currentActiveHref = currentActiveTab.getAttribute('href');
-      currentActiveId = currentActiveHref.replace('#', '');
-      currentActiveTab.classList.remove('active');
-      document.querySelector(currentActiveHref).classList.remove('active');
-    }
-    this._updateActiveStatusInBoundTabs(currentActiveId, targetId);
-    this._eventAggregator.publish(`aurelia-plugins:tabs:active-tab-changed`, { from: currentActiveId, to: targetId });
-    this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetId}`, event);
-  }
-
-  _refresh() {
-    const active = this.tabs.find(tab => tab.active);
-    if (!active) return;
-    this.activeTabId = active.id;
-    if (!this._addTabActiveClass(active.id)) {
-      setTimeout(() => {
-        this._addTabActiveClass(active.id);
-      }, 0);
-    }
-  }
-
-  _addTabActiveClass(tabId) {
-    const element = document.querySelector(`#${tabId}`);
-    if (element) {
-      element.classList.add('active');
-    }
-    return !!element;
-  }
-
-  _updateActiveStatusInBoundTabs(activeId, targetId) {
-    this._setTabActiveState(activeId, false);
-    this._setTabActiveState(targetId, true);
-  }
-
-  _setTabActiveState(tabId, newActiveState) {
-    if (tabId) {
-      let tab = this._findTab(tabId);
-      if (tab) {
-        tab.active = newActiveState;
-        if (newActiveState) {
-          this.activeTabId = tabId;
-        }
+    if (!tab.disabled) {
+      const target = event.target;
+      const currentActiveTab = this._element.querySelector('a.nav-link.active');
+      if (target !== currentActiveTab) {
+        const targetHref = target.getAttribute('href');
+        const targetId = targetHref.replace('#', '');
+        previousActiveId = this.activeTabId;
+        this._setTabActiveState(targetId);
+        this._eventAggregator.publish(`aurelia-plugins:tabs:active-tab-changed`, { from: previousActiveId, to: targetId });
+        this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetId}`, event);
       }
     }
   }
 
-  _findTab(targetId) {
-    return this.tabs.find(tab => tab.id === targetId);
+  isActive(tab) {
+    return tab.id === this.activeTabId;
   }
 
+  _refresh() {
+    setTimeout(() => {
+      this._setTabActiveState(this.activeTabId);
+    }, 0);
+  }
+
+  _setTabActiveState(newActiveId) {
+    this.activeTabId = newActiveId;
+    this.tabs.forEach(tab => {
+      const tabPane = '#' + tab.id;
+      const navLink = this._element.querySelector('a.nav-link.' + tab.id);
+      const tabContents = this._element.parentElement.querySelector(tabPane);
+      if (navLink && tabContents) {
+        if (tab.id === this.activeTabId) {
+          tabContents.classList.add('active');
+          navLink.classList.add('active');
+        } else {
+          tabContents.classList.remove('active');
+          navLink.classList.remove('active');
+        }
+      }
+    });
+  }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'class', [bindable], {
   enumerable: true,
   initializer: function () {

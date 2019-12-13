@@ -20,7 +20,7 @@ export class Tabs {
   @bindable class = 'nav-tabs';
   @bindable tabs;
   @bindable translate = false;
-  @bindable({ defaultBindingMode: bindingMode.toView }) // out
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   activeTabId = null;
 
   // CONSTRUCTOR
@@ -41,68 +41,53 @@ export class Tabs {
 
   // PUBLIC METHODS
   click(tab, event) {
-    let currentActiveId;
-    let targetId;
+    let previousActiveId;
     event.stopPropagation();
-    if (tab.disabled) return;
-    const target = event.target;
-    const currentActiveTab = this._element.querySelector('a.nav-link.active');
-    if (target === currentActiveTab) return;
-    const targetHref = target.getAttribute('href');
-    target.classList.add('active');
-    document.querySelector(targetHref).classList.add('active');
-    targetId = targetHref.replace('#', '');
-    if (currentActiveTab) {
-      const currentActiveHref = currentActiveTab.getAttribute('href');
-      currentActiveId = currentActiveHref.replace('#', '');
-      currentActiveTab.classList.remove('active');
-      document.querySelector(currentActiveHref).classList.remove('active');
-    }
-    this._updateActiveStatusInBoundTabs(currentActiveId, targetId);
-    this._eventAggregator.publish(`aurelia-plugins:tabs:active-tab-changed`, {from: currentActiveId, to: targetId});
-    this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetId}`, event);
-  }
-
-  // PRIVATE METHODS
-  _refresh() {
-    const active = this.tabs.find(tab => tab.active);
-    if (!active) return;
-    this.activeTabId = active.id;
-    if (!this._addTabActiveClass(active.id)) {
-      // No element there?! Give it another chance as may not have entered the dom yet
-      setTimeout(() => {
-        this._addTabActiveClass(active.id);
-      }, 0);
-    }
-  }
-
-  _addTabActiveClass(tabId) {
-    const element = document.querySelector(`#${tabId}`);
-    if (element) {
-      element.classList.add('active');
-    }
-    return !!element;
-  }
-
-  _updateActiveStatusInBoundTabs(activeId, targetId) {
-    this._setTabActiveState(activeId, false);
-    this._setTabActiveState(targetId, true);
-  }
-
-  _setTabActiveState(tabId, newActiveState) {
-    if (tabId) {
-      let tab = this._findTab(tabId);
-      if (tab) {
-        tab.active = newActiveState;
-        if (newActiveState) {
-          this.activeTabId = tabId;
-        }
+    if (!tab.disabled) {
+      const target = event.target;
+      const currentActiveTab = this._element.querySelector('a.nav-link.active');
+      if (target !== currentActiveTab) {
+        const targetHref = target.getAttribute('href');
+        const targetId = targetHref.replace('#', '');
+        previousActiveId = this.activeTabId;
+        this._setTabActiveState(targetId);
+        this._eventAggregator.publish(`aurelia-plugins:tabs:active-tab-changed`, {from: previousActiveId, to: targetId});
+        this._eventAggregator.publish(`aurelia-plugins:tabs:tab-clicked:${targetId}`, event);
       }
     }
   }
 
-  _findTab(targetId) {
-    return this.tabs.find(tab => tab.id === targetId);
+  isActive(tab) {
+    return tab.id === this.activeTabId;
   }
 
+  // PRIVATE METHODS
+  /**
+   * All tab contents *will* (shortly) be recreated and so need setTimeout as only when the elements are in the DOM
+   * can we set their active state.
+   */
+  _refresh() {
+    setTimeout(() => {
+      this._setTabActiveState(this.activeTabId);
+    }, 0);
+  }
+
+  _setTabActiveState(newActiveId) {
+    this.activeTabId = newActiveId;
+    this.tabs.forEach(tab => {
+      const tabPane = '#' + tab.id;
+      const navLink = this._element.querySelector('a.nav-link.' + tab.id);
+      const tabContents = this._element.parentElement.querySelector(tabPane);
+      if (navLink && tabContents) {
+        if (tab.id === this.activeTabId) {
+          tabContents.classList.add('active');
+          navLink.classList.add('active');
+        }
+        else {
+          tabContents.classList.remove('active');
+          navLink.classList.remove('active');
+        }
+      }
+    });
+  }
 }
